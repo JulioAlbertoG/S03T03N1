@@ -48,30 +48,25 @@ public class Ticket {
 				Scanner color_flor = new Scanner(System.in);
 				String colorFlor = color_flor.next();
 				
+				
+				
 				if(floris.flors.size() != 0) {
 
-					for(int i=0; floris.flors.size() >i;i++) {
+					boolean c = false;
+					int i=0;
+					do {
 						if(floris.flors.get(i).nom_flor.equalsIgnoreCase(nomFlor) && floris.flors.get(i).color.equalsIgnoreCase(colorFlor)) {
-
+							c=true;
 							t.flors.add(floris.flors.get(i));
-							
-							
-							
-							if(floris.flors.get(i).cantidadFlor == 1) {	
-								floris.flors.remove(i);
-								
-							}
-							if(floris.flors.get(i).cantidadFlor > 1) {
-								floris.flors.get(i).cantidadFlor = (floris.flors.get(i).cantidadFlor)-1;
-									
-							}
-							
-						}else {
-							System.out.println("No existe esta flor");
+							floris.flors.remove(i);
+
 						}
-						
-					}
-					
+						if (i == (floris.flors.size())-1 && c == false) {
+							System.out.println("No existe esta flor en el stock");
+						}
+						i++;
+					}while(c==false);
+
 				}
 				break;
 			}
@@ -87,26 +82,23 @@ public class Ticket {
 				
 				if(floris.arbres.size() != 0) {
 
-					for(int i=0; floris.arbres.size() >i;i++) {
+					boolean c = false;
+					int i=0;
+					do {
 						if(floris.arbres.get(i).nom_arbre.equalsIgnoreCase(nomArbre) && floris.arbres.get(i).alcada == alcadaArbre) {
-							
+							c=true;
 							t.arbres.add(floris.arbres.get(i));
-							if(floris.arbres.get(i).cantidad_arb == 1) {	
-								floris.arbres.remove(i);
-								System.out.println("Has comprado la última flor");
-							}
-							
-							if(floris.arbres.get(i).cantidad_arb > 1) {
-								floris.arbres.get(i).cantidad_arb = (floris.arbres.get(i).cantidad_arb)-1;
-								
-							}
-						}else {
-							System.out.println("No existe este árbol");
+							floris.arbres.remove(i);
+
 						}
-						
-					}
-					
+						if (i == (floris.arbres.size())-1 && c == false) {
+							System.out.println("No existe este árbol en el stock");
+						}
+						i++;
+					}while(c==false);
+				
 				}
+				
 				break;
 			}
 			case 3:{
@@ -117,19 +109,21 @@ public class Ticket {
 				
 				if(floris.decoracio.size() != 0) {
 
-					for(int i=0; floris.decoracio.size() >i;i++) {
+					boolean c = false;
+					int i=0;
+					do {
 						if(floris.decoracio.get(i).material.equalsIgnoreCase(matDeco)) {
-							t.decoracio.add(floris.decoracio.get(i));		
-							if(floris.decoracio.get(i).cantidad_deco == 1) {	
-								floris.decoracio.remove(i);		
-							}
-							if(floris.decoracio.get(i).cantidad_deco > 1) {
-								floris.decoracio.get(i).cantidad_deco = (floris.decoracio.get(i).cantidad_deco)-1;	
-							}
-						}else {
-							System.out.println("No existe esta decoración");
-						}	
-					}
+							c=true;
+							t.decoracio.add(floris.decoracio.get(i));
+							floris.decoracio.remove(i);
+
+						}
+						if (i == (floris.decoracio.size())-1 && c == false) {
+							System.out.println("No existe este material de decoración en el stock");
+						}
+						i++;
+					}while(c==false);
+					
 			
 				}
 				break;
@@ -141,7 +135,6 @@ public class Ticket {
 				System.out.println("Compra finalizada: ");
 
 				for(Flors f: t.flors) {
-					
 					total += f.preu;
 					System.out.println(f.nom_flor + " " + f.preu);
 				}
@@ -157,7 +150,6 @@ public class Ticket {
 				}
 				System.out.println("Total a pagar: " + total + "€");
 				floris.tickets.add(t);
-				
 
 				break;
 			}

@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Ejecutor_n1 {
 	
-	static Floristeria floris;
+	 static Floristeria floris;
 
 	public static void main(String[] args) {
 		
@@ -36,6 +36,7 @@ public class Ejecutor_n1 {
 		switch(eleccion) {
 			case 1:{
 				//Tengo que introducir el objeto entero, en cada caso con todas las caracxterísticas
+				//System.out.println(floris.nom_floris);
 				floris = Flors.agregar(floris);
 				Fitxer.escribirFit(floris.nom_floris, floris);
 				break;

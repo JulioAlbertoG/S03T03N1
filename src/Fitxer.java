@@ -50,6 +50,7 @@ public class Fitxer {
 		try {
 			br = new BufferedReader(new FileReader(fichero)); 
 			while ((strCurrentLine = br.readLine()) != null) { 
+				
 				//Nos trae un String, pero debemos devolver un objeto floristeria.
 				Gson gson = new Gson();
 				floristeria= gson.fromJson(strCurrentLine, Floristeria.class) ;

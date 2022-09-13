@@ -1,3 +1,4 @@
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Flors {
@@ -5,13 +6,13 @@ public class Flors {
 	String nom_flor;
 	String color;
 	double preu;
-	int cantidadFlor;
+//	int cantidadFlor;
 	
 	public Flors(String nom_flor, String color, double preu) {
 		this.nom_flor = nom_flor;
 		this.color = color;
 		this.preu = preu;
-		this.cantidadFlor = 0;
+		//this.cantidadFlor = 0;
 	}
 
 	//No puedo usar getters and setters porque tengo que construir y retornar el objeto entero para agregarlo al arreglo
@@ -32,21 +33,18 @@ public class Flors {
 
 		if(floris.flors.isEmpty()) {
 			floris.flors.add(new Flors (nomFlor, colorFlor, preuFlor));
-			floris.flors.get(i).cantidadFlor = floris.flors.get(i).cantidadFlor +1;
+			//floris.flors.get(i).cantidadFlor = floris.flors.get(i).cantidadFlor +1;
 			System.out.println("Se agrega primera flor al stock");
 		}else {
-			
-			
 			boolean c = false;
+			floris.flors.add(new Flors (nomFlor, colorFlor, preuFlor));
 			do {
 				if(floris.flors.get(i).nom_flor.equalsIgnoreCase(nomFlor) && floris.flors.get(i).color.equalsIgnoreCase(colorFlor)) {
 					c =true;
-					floris.flors.get(i).cantidadFlor = (floris.flors.get(i).cantidadFlor) + 1;
-					System.out.println("Flor: " + floris.flors.get(i).nom_flor + ", Cantidad: " + floris.flors.get(i).cantidadFlor);
+					System.out.println("Flor: " + floris.flors.get(i).nom_flor + "€ ya existe, se agrega al stock.");
 				};
 				if(i == (floris.flors.size())-1 && c == false)
 				{	
-					floris.flors.add(new Flors (nomFlor, colorFlor, preuFlor));
 					
 					System.out.println("Se ha hecho la comprobación y la flor no existe, así que se agrega al stock");
 				};
@@ -73,11 +71,8 @@ public class Flors {
 		do {
 			if(floris.flors.get(i).nom_flor.equalsIgnoreCase(nomFlor) && floris.flors.get(i).color.equalsIgnoreCase(colorFlor)) {
 				c=true;
-				if(floris.flors.get(i).cantidadFlor == 0) {
-					floris.flors.remove(i);
-				}else {
-					floris.flors.get(i).cantidadFlor = (floris.flors.get(i).cantidadFlor)-1;
-				}
+				floris.flors.remove(i);
+
 			}
 			if (i == (floris.flors.size())-1 && c == false) {
 				System.out.println("No existe esta flor en el stock");
@@ -86,6 +81,24 @@ public class Flors {
 		}while(c==false);
 		
 		return floris;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(color, nom_flor, preu);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Flors other = (Flors) obj;
+		return Objects.equals(color, other.color) && Objects.equals(nom_flor, other.nom_flor)
+				&& Double.doubleToLongBits(preu) == Double.doubleToLongBits(other.preu);
 	}
 
 

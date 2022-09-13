@@ -1,4 +1,7 @@
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Floristeria {
 	
@@ -24,22 +27,27 @@ public class Floristeria {
 	public void stock_producte() {
 		//Una floristeria ha de tenir un stock de cada un dels productes (arbres, flors i decoració).
 		if(flors.size() != 0) {
-			for(Flors flor:flors) {
-				System.out.println("Flor: " + flor.nom_flor + ", precio: " + flor.preu + ", color: " + flor.color + ", cantidad: " + flor.cantidadFlor + ".");
-			}
+			
+			Set<Flors> distinct = new HashSet<>(flors);
+			for (Flors s: distinct) {
+	            System.out.println("Flor: " + s.nom_flor +", color: " + s.color + ", cantidad: " + Collections.frequency(flors, s));
+	        }
+		
 		}else {
 			System.out.println("No hay flores que mostrar.");
 		}
 		if(arbres.size() != 0) {
-			for(Arbres arbre:arbres) {
-				System.out.println("Árbol: " + arbre.nom_arbre + ", precio: " + arbre.preu + ", altura: " + arbre.alcada + ", cantidad:  " + arbre.cantidad_arb + ".");
+			Set<Arbres> dis_arb = new HashSet<>(arbres);
+			for(Arbres arbre:dis_arb) {
+				System.out.println("Árbol: " + arbre.nom_arbre + ", precio: " + arbre.preu + ", altura: " + arbre.alcada +", cantidad: "+ Collections.frequency(arbres, arbre));
 			}
 		}else {
 			System.out.println("No hay árboles que mostrar.");
 		}
 		if(decoracio.size() != 0) {
-			for(Decoracio decor:decoracio) {
-				System.out.println("Decoración: " + decor.material + ", precio: " + decor.preu + ", cantidad: " + decor.cantidad_deco + ".");
+			Set<Decoracio> dis_deco = new HashSet<>(decoracio);
+			for(Decoracio decor:dis_deco) {
+				System.out.println("Decoración: " + decor.material + ", precio: " + decor.preu+", cantidad: "+ Collections.frequency(decoracio, decor));
 			}
 		}else {
 			System.out.println("No hay decoraciones que mostrar.");
@@ -53,19 +61,19 @@ public class Floristeria {
 		double total_stock_value=0;
 		if(flors.size() != 0) {
 			for(Flors flor:flors) { 
-				total_stock_value += flor.preu * flor.cantidadFlor;
+				total_stock_value += flor.preu;
 				
 			}
 		}
 		if(arbres.size() != 0) {
 			for(Arbres arbre:arbres) {
-				total_stock_value += arbre.preu * arbre.cantidad_arb;
+				total_stock_value += arbre.preu;
 				
 			}
 		}
 		if(decoracio.size() != 0) {
 			for(Decoracio decor:decoracio) {
-				total_stock_value += decor.preu * decor.cantidad_deco;
+				total_stock_value += decor.preu;
 				
 			}
 		}
